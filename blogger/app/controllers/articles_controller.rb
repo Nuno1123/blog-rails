@@ -11,6 +11,8 @@ class ArticlesController < ApplicationController
   #is what this method does
   def show
     @article = Article.find(params[:id])
+    @comment = Comment.new
+    @comment.article_id = @article.id
   end
 
   #to create a new article when we click the create article link_to
