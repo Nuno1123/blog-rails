@@ -3,7 +3,7 @@ class Article < ApplicationRecord
   has_many :comments
   has_many :taggings
   has_many :tags, through: :taggings
-  has_attached_file :image, styles: {medium: "1000x600>", thumb: "100x100>"}
+  has_attached_file :image, styles: {medium: "900x600>", thumb: "100x100>"}
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
   def tag_list
