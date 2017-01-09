@@ -1,5 +1,15 @@
 class ArticlesController < ApplicationController
+  before_filter :require_login, except: [:show, :index]
   include ArticlesHelper
+
+
+  def require_login
+    unless current_user
+      redirect_to article_path
+      flash.notice = "Unauthorized action for unsuscribed users"
+      return false
+    end
+  end
 
   #routes.rb redirects the GET by the browser to this method which displays all
   #articles

@@ -1,4 +1,13 @@
 class TagsController < ApplicationController
+  before_filter :require_login, only: [:show, :destroy]
+
+  def require_login
+    unless current_user
+      redirect_to tags_path
+      flash.notice = "Can't do action unless logged in"
+      return false
+    end
+  end
 
   def show
     @tag = Tag.find(params[:id])
